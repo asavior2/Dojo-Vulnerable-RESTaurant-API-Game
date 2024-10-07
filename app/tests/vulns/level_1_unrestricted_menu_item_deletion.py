@@ -3,22 +3,22 @@ from db.models import MenuItem
 
 def test_unrestricted_menu_item_deletion(test_db, customer_client):
     """
-    Note:
-        The previous vulnerability was just a low severity issue but
-        allowed me to understand the application's technology better.
+    Nota:
+        La vulnerabilidad anterior era solo un problema de baja gravedad pero
+        me permitió comprender mejor la tecnología de la aplicación.
 
-        After several minutes with the app, I already found much more
-        interesting vulnerability!
-        It looks like Chef forgot to add authorisation checks to "/menu/{id}"
-        API endpoint and anyone can use DELETE method to delete items
-        from the menu!
+        Después de varios minutos con la aplicación, ya encontré una vulnerabilidad
+        mucho más interesante.
+        Parece que Chef olvidó agregar verificaciones de autorización al endpoint 
+        de la API "/menu/{id}" y cualquiera puede usar el método DELETE para eliminar elementos
+        del menú.
 
-    Possible fix:
-        Probably, it could be fixed in "delete_menu_item" function in
-        "apis/menu/service.py" file by adding auth=Depends(...) with proper
-        roles checks.
-        There is an example implementation of authorisation checks in
-        "update_menu_item" function.
+    Posible solución:
+        Probablemente, se podría solucionar en la función "delete_menu_item" en el archivo
+        "apis/menu/service.py" agregando auth=Depends(...) con las verificaciones de roles adecuadas.
+
+        Hay un ejemplo de implementación de verificaciones de autorización en la función
+        "update_menu_item".
     """
 
     # here, is the test confirming the vulnerability:

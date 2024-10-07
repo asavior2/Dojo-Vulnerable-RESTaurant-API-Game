@@ -6,38 +6,38 @@ from db.models import User, UserRole
 
 def test_ssrf(test_db, employee_client, anon_client, requests_mock, mocker):
     """
-    Note:
-        Using employee role, I was able to access more endpoints
-        and found more vulnerabilities in endpoints restricted to employees.
+    Nota:
+        Al usar el rol de empleado, pude acceder a más endpoint
+        y encontré más vulnerabilidades en los endpoint restringidos a los empleados.
 
-        I found a PUT "/menu" endpoint that allows to create menu items
-        and set images for these items as employee.
-        You won't believe but it's possible to set an image via URL.
-        The image is then downloaded and stored in the database as
-        base64 encoded format.
-        I could use this to perform SSRF attack!
+        Encontré un endpoint PUT "/menu" que permite crear elementos de menú
+        y establecer imágenes para estos elementos como empleado.
+        No lo creerás, pero es posible establecer una imagen a través de una URL.
+        Luego, la imagen se descarga y se almacena en la base de datos en formato
+        codificado en base64.
+        ¡Podría usar esto para realizar un ataque SSRF!
 
-        I also found a hidden endpoint "/admin/reset-chef-password"
-        which can be used to reset the password of the Chef user
-        but it can be accessed only from localhost.
+        También encontré un endpoint oculto "/admin/reset-chef-password"
+        que se puede usar para restablecer la contraseña del usuario Chef
+        pero solo se puede acceder desde el host local.
 
-        ...and I got an idea!
+        ... ¡y se me ocurrió una idea!
 
-        I can use SSRF in "/menu" which will allow me to make requests from
-        the server, so I can access the "/admin/reset-chef-password" endpoint
-        and get the new password of the Chef user!
+        Puedo usar SSRF en "/menu" que me permitirá realizar solicitudes desde
+        el servidor, de modo que pueda acceder al endpoint "/admin/reset-chef-password"
+        y obtener la nueva contraseña del usuario Chef.
 
-        btw. the woman still did not reply on my questions related
-        to the API. This job looks really weird now. I need to make sure
-        that she is the owner of this restaurant really quick.
+        Por cierto. La mujer todavía no respondió a mis preguntas relacionadas con
+        la API. Este trabajo se ve realmente extraño ahora. Necesito asegurarme
+        de que ella es la dueña de este restaurante lo más rápido posible.
 
-    Possible fix:
-        Probably, it could be fixed by allowing only chosen domains
-        to be used to host images for menu. Also, would be cool to
-        restrict filetypes to images only.
+        Posible solución:
+        Probablemente, se podría solucionar permitiendo que solo se usen los dominios 
+        seleccionados para alojar imágenes para el menú. También sería bueno
+        restringir los tipos de archivos a solo imágenes.
 
-        I think it could be fixed in "apis/menu/utils.py" in "_image_url_to_base64"
-        function, or in "menu/service.py" in "update_menu_item" function.
+        Creo que se podría solucionar en "apis/menu/utils.py" en la función "_image_url_to_base64" 
+        o en "menu/service.py" en la función "update_menu_item".
     """
 
     # here, is the test confirming the vulnerability:

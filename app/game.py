@@ -32,7 +32,7 @@ def run_tests(test_file_path=None):
         )
         animation = "|/-\\"
         idx = 0
-        print("  Running tests... Please wait...", end="\r")
+        print("  Ejecutando pruebas... Por favor espere...", end="\r")
         while process.poll() is None:
             print(animation[idx % len(animation)], end="\r")
             idx += 1
@@ -101,14 +101,14 @@ def print_level_description(test_file_path):
             level_description = ast.get_docstring(node)
 
     if not level_description:
-        raise Exception("No hints provided!")
+        raise Exception("¡No se proporcionan pistas!")
 
     print(level_title, end="\n\n")
     print(level_description, end="\n\n")
 
     full_test_file_path = join(BASE_PATH, test_file_path)
     print(
-        f"Test file confirming the vulnerability:\n    {full_test_file_path}",
+        f"Archivo de prueba que confirma la vulnerabilidad:\n    {full_test_file_path}",
         end="\n\n\n",
     )
 
@@ -117,25 +117,27 @@ def print_welcome_screen():
     print(Fore.GREEN, end="")
     print(
         """
-            Welcome to Damn Vulnerable RESTaurant!
+            ¡Bienvenidos al DOJO Vulnerable RESTAurant!
 
-            Our restaurant was recently attacked by unknown threat actor!
-            The restaurant's API and underlying system were compromised by 
-            exploiting various security vulnerabilities.
+            Iniciativa de ciberseguridad para promover el desarrollo seguro de aplicaciones web.
 
-            The owner of the restaurant - Mysterious Chef wants you to
-            investigate how it happened and fix the vulnerabilities.
-            Chef suspects that attackers were associated with the newly opened
-            restaurant located across the street.
+            Contexto:
+            
+            ¡Nuestro restaurante fue atacado recientemente por un actor de amenazas desconocido!
+            La API y el sistema subyacente del restaurante se vieron comprometidos al explotar varias vulnerabilidades de seguridad.
 
-            The attackers left tests confirming the exploits that they
-            used to gain access to the system. You can read these tests
-            to understand the vulnerability better but don't modify them.
+            El propietario del restaurante, Mysterious Chef, quiere que
+            investigue cómo sucedió y solucione las vulnerabilidades.
+            El chef sospecha que los atacantes estaban asociados con el restaurante
+            recién inaugurado ubicado al otro lado de la calle.
 
-            Your task is to fix the vulnerabilities to make sure that those
-            malicious tests are no longer passing. In next steps, you will
-            get vulnerability hints left by the attackers.
-            Use those hints to implement fixes.
+            Los atacantes dejaron pruebas que confirman los exploits que
+            utilizaron para obtener acceso al sistema. Puede leer estas pruebas
+            para comprender mejor la vulnerabilidad, pero no las modifique.
+
+            Su tarea es solucionar las vulnerabilidades para asegurarse de que esas pruebas maliciosas ya no pasen. En los próximos pasos,
+            obtendrá pistas de vulnerabilidad dejadas por los atacantes.
+            Use esas pistas para implementar correcciones.
         """,
         end="\n\n",
     )
@@ -146,25 +148,22 @@ def print_congrats_screen():
     print(Fore.GREEN, end="")
     print(
         """
-            Congratulations! Great Work!
+            ¡Felicitaciones! ¡Excelente trabajo!
 
-            You were able to fix all of the vulnerabilities exploited 
-            during the attack!
+            ¡Pudiste reparar todas las vulnerabilidades explotadas
+            durante el ataque!
 
-            However, we are aware about other vulnerabilities in the system.
-            Also, there is one more vulnerability that allows to execute 
-            commands on the server as a root user but you need to find it
-            on your own :)
+            Sin embargo, somos conscientes de otras vulnerabilidades en el sistema.
+            Además, hay una vulnerabilidad más que permite ejecutar
+            comandos en el servidor como usuario root, pero debes encontrarla
+            por tu cuenta :)
 
+            Recuerda... estas vulnerabilidades se implementaron y se te proporcionaron
+            con fines de aprendizaje, no uses este conocimiento para atacar
+            servicios que no son de tu propiedad o para los que no tienes permisos
+            para hacerlo.
 
-            If you enjoyed this challenge, please contact the repository owner
-            and leave the feedback. You can find the contact at devsec-blog.com.
-
-            And remember... these vulnerabilities were implemented and provided
-            to you for learning purposes, don't use this knowledge to attack
-            services that you don't own or you don't have permissions
-            to do that.
-            With great power comes great responsibility.
+            Un gran poder conlleva una gran responsabilidad...
         """
     )
     print(Style.RESET_ALL, end="")
@@ -188,7 +187,7 @@ def move_cursor_top(lines=1):
 
 
 print_welcome_screen()
-press_key_to_continue("Click any key to continue...", end="\n\n")
+press_key_to_continue("Haga clic en cualquier tecla para continuar...", end="\n\n")
 
 for i, level_test_file in enumerate(VULNS_TEST_FILES_PATHS, start=1):
     vuln_name = get_vuln_name(level_test_file)
@@ -199,7 +198,7 @@ for i, level_test_file in enumerate(VULNS_TEST_FILES_PATHS, start=1):
 
     if is_vuln_fixed and is_working_fine:
         print_color_text(
-            f'Congratulations! You fixed the "{vuln_name}" vulnerability!',
+            f'¡Felicitaciones! Has solucionado la vulnerabilidad. "{vuln_name}"',
             color=Fore.GREEN,
             end="\n\n",
         )
@@ -216,26 +215,26 @@ for i, level_test_file in enumerate(VULNS_TEST_FILES_PATHS, start=1):
             )
             logs_lines_count = unit_tests_result_out.count("\n\r")
             print_color_text(
-                f"The vulnerability seems to be fixed! However, the feature is not working correctly! Check the above unit tests logs...",
+                f"¡La vulnerabilidad parece estar solucionada! Sin embargo, la función no funciona correctamente. Revise los registros de pruebas unitarias anteriores...",
                 color=Fore.RED,
                 end="\n\r",
             )
             press_key_to_continue(
-                "Fix the issue and press any key to validate...",
+                "Solucione el problema y presione cualquier tecla para validar...",
                 end="\r\r",
             )
             move_cursor_top(logs_lines_count + 4)
         elif not is_vuln_fixed:
             if first_try:
                 press_key_to_continue(
-                    "Fix the vulnerability and press any key to validate the fix...",
+                    "Solucione la vulnerabilidad y presione cualquier tecla para validar la solución...",
                     end="\r\r",
                 )
                 move_cursor_top()
             else:
                 press_key_to_continue(
-                    """Unfortunately, the vulnerability is not fixed yet.
-Fix the vulnerability and press any key to validate the fix...""",
+                    """Lamentablemente la vulnerabilidad aún no se ha solucionado.
+Solucione la vulnerabilidad y presione cualquier tecla para validar la solución...""",
                     color=Fore.RED,
                     end="\r\r",
                 )
@@ -248,11 +247,11 @@ Fix the vulnerability and press any key to validate the fix...""",
 
         if is_vuln_fixed and is_working_fine:
             print_color_text(
-                f'Congratulations! You fixed the "{vuln_name}" vulnerability!',
+                f'¡Felicitaciones! Has solucionado la vulnerabilidad "{vuln_name}"',
                 color=Fore.GREEN,
                 end="\n\n",
             )
-            press_key_to_continue("Click any key to continue...", end="\n\n")
+            press_key_to_continue("Haga clic en cualquier tecla para continuar...", end="\n\n")
             first_try = True
 
     if i == len(VULNS_TEST_FILES_PATHS):

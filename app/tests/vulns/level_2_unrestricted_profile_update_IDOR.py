@@ -4,21 +4,21 @@ from db.models import User, UserRole
 
 
 def test_unrestricted_profile_update_idor(test_db, customer_client):
-    """
-    Note:
-        Holly molly, I found another vulnerability!
+    """    
+    Nota:
+        ¡Ay, Dios mío, encontré otra vulnerabilidad!
 
-        Chef would be mad at me for this one...
-        It's possible to modify any profile's details by providing username
-        in HTTP request sent to "/profile" endpoint with PUT method.
-        I could change anyone's phone number and other details so easily!
+        Chef se enojaría conmigo por esto...
+        Es posible modificar los detalles de cualquier perfil si se proporciona el nombre de usuario
+        en una solicitud HTTP enviada al punto final "/profile" con el método PUT.
+        ¡Podría cambiar el número de teléfono y otros detalles de cualquier persona con mucha facilidad!
 
-    Possible fix:
-        Probably, it could be fixed by making sure that "current_user"
-        is authorised to perform updates only in own profile.
+    Posible solución:
+        Probablemente, se podría solucionar asegurándose de que "current_user"
+        esté autorizado a realizar actualizaciones solo en su propio perfil.
 
-        The fix could be implemented in "update_current_user_details"
-        function in "apis/auth/service.py" file.
+        La solución se podría implementar en la función "update_current_user_details"
+        en el archivo "apis/auth/service.py".
     """
 
     # here, is the test confirming the vulnerability:

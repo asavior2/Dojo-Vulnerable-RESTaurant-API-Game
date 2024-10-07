@@ -5,25 +5,26 @@ from db.models import User, UserRole
 
 def test_privilege_escalation(test_db, customer_client):
     """
-    Note:
-        Now, the funny part starts!
+    Nota:
+        ¡Ahora comienza la parte divertida!
 
-        I was able to escalate privileges from customer to employee!
-        I achieved this via "/users/update_role" API endpoint
-        just by changing a role.
+        ¡Pude escalar privilegios de cliente a empleado!
+        Lo logré a través del punto final de API "/users/update_role"
+        simplemente cambiando un rol.
 
-        With this role, I can now access the employee restricted endpoints...
-        What can I do with these permissions next? :thinking_face:
+        Con este rol, ahora puedo acceder a los puntos finales restringidos para empleados...
 
-        btw. my employer didn't respond to my initial findings.
-        This API is so vulnerable...
+        ¿Qué puedo hacer con estos permisos a continuación? :thinking_face:
 
-    Possible fix:
-        It could be fixed by making sure that only employees
-        or Chef can grant Employee role.
+        Por cierto, mi empleador no respondió a mis hallazgos iniciales.
+        Esta API es muy vulnerable...
 
-        Probably, the fix could be implemented in "apis/users/service.py" file
-        in "update_user_role" function - in a similar way as first vuln.
+    Posible solución:
+        Se podría solucionar asegurándose de que solo los empleados
+        o Chef puedan otorgar el rol de Empleado.
+
+        Probablemente, la solución se podría implementar en el archivo "apis/users/service.py"
+        en la función "update_user_role", de manera similar a la primera vulnerabilidad.
     """
 
     # here, is the test confirming the vulnerability:

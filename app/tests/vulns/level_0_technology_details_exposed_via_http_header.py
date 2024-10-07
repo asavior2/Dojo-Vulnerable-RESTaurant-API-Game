@@ -1,26 +1,27 @@
 def test_technology_details_exposed_via_http_header(anon_client):
     """
-    Note:
-        I was hired to perform a security assessment of Chef's restaurant.
-        It looks to be a pretty interesting challenge. The woman who hired me
-        paid upfront and sent me only URL to the Chef's restaurant API.
+    Nota:
 
-        I spent a few minutes with the restaurant's API and already found
-        a vulnerability exposing utilised technology details in the HTTP
-        response in "/healthcheck" endpoint. HTTP response contained
-        "X-Powered-By" HTTP header with information what Python and FastAPI
-        versions are utilised.
-        I can use these pieces of information to search for exploits
-        online!
+    Me contrataron para realizar una evaluación de seguridad del restaurante Chef's.
+    Parece ser un desafío bastante interesante. La mujer que me contrató
+    pagó por adelantado y me envió solo la URL de la API del restaurante Chef's.
 
-        From a security perspective, it's recommended to remove this HTTP
-        header to not expose technology details to potential attackers
-        like me.
+    Pasé unos minutos con la API del restaurante y ya encontré
+    una vulnerabilidad que exponía detalles de la tecnología utilizada en la respuesta HTTP
+    en el punto final "/healthcheck". La respuesta HTTP contenía el encabezado 
+    HTTP "X-Powered-By" con información sobre qué versiones de Python y FastAPI se utilizan.
 
-    Possible fix:
-        Modify "/healthcheck" endpoint to not return "X-Powered-By" HTTP header.
-        It can be achieved by removing the "response.headers" line
-        from "apis/healthcheck/service.py" file.
+    ¡Puedo usar estos datos para buscar vulnerabilidades
+    en línea!
+
+    Desde una perspectiva de seguridad, se recomienda eliminar este encabezado HTTP 
+    para no exponer detalles de la tecnología a posibles atacantes
+    como yo.
+
+    Posible solución:
+        Modificar el endpoint "/healthcheck" para que no devuelva el encabezado HTTP "X-Powered-By".
+        Esto se puede lograr eliminando la línea "response.headers"
+        del archivo "apis/healthcheck/service.py".
     """
 
     response = anon_client.get("/healthcheck")
