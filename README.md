@@ -5,14 +5,19 @@
 
 ¡Únete a nuestro Dojo Api Sec para mejorar tus habilidades en seguridad de desarrollo de API! Aprenderás sobre vulnerabilidades y pondrás en práctica la mitigación de las mismas en un juego interactivo que incluye 5 de las principales amenazas de API según el OWASP Top 10. Comenzamos con una introducción a los riesgos y luego te sumergirás en la práctica para fortalecer tus conocimientos y proteger tus proyectos. ¡Únete ahora y mejora tus habilidades en seguridad de API! 👨‍💻🔒💻🎮 #ApiSecurity #OWASP #AprendeHaciendo
 
-An intentionally vulnerable API service designed for learning and training purposes dedicated to developers, ethical hackers and security engineers. The idea of the project is to provide an environment that can be easily extended with new vulnerable endpoints and mechanisms that could be used in trainings for detecting and exploiting identified vulnerabilities.
-
+Un servicio API intencionalmente vulnerable diseñado para fines de aprendizaje y capacitación dedicado a desarrolladores, hackers éticos e ingenieros de seguridad. La idea del proyecto es proporcionar un entorno que pueda ampliarse fácilmente con nuevos puntos finales vulnerables y mecanismos que puedan usarse en capacitaciones para detectar y explotar vulnerabilidades identificadas.
 
 It's a training playground: 
 
 * **For Developers** - engage in a dedicated game where you will identify and fix vulnerabilities interactively. 
 * **For Ethical Hackers** - exploit vulnerabilities manually or use automated tools. Treat it as a CTF challenge, you can start from low privileged API user and escalate to root user. There is one path to achieve this. API docs are provided to facilitate your hacking adventure.
 * **For Security Engineers** - utilise various security automation tools such as SAST, DAST, IaC, etc., to test vulnerability detection mechanisms.
+
+Es un campo de entrenamiento: 
+
+* **Para desarrolladores**: participa en un juego dedicado en el que identificarás y solucionarás vulnerabilidades de forma interactiva. 
+* **Para hackers éticos**: explota vulnerabilidades de forma manual o utiliza herramientas automatizadas. Trátalo como un desafío CTF, puedes comenzar como usuario de API con pocos privilegios y escalar hasta el usuario root. Hay un camino para lograrlo. Se proporcionan documentos de API para facilitar tu aventura de piratería. 
+* **Para ingenieros de seguridad**: utiliza varias herramientas de automatización de seguridad como SAST, DAST, IaC, etc., para probar mecanismos de detección de vulnerabilidades.
 
 ## 👨‍💻 Developers Approach
 
