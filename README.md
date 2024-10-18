@@ -66,6 +66,11 @@ Los datos persistirán entre paradas y arranques.
 
 ¡Ya estás listo para servir los platos ahora, **haz enojar al Chef explotando vulnerabilidades** o **hazlo feliz arreglándolos**!
 
+## 🛠️ Development Stack
+
+Se desarrolló con el marco de trabajo Python FastAPI y utiliza una base de datos PostgreSQL. El entorno está en contenedores y se puede implementar fácilmente de forma local con Docker. Con Python y FastAPI, es bastante sencillo ampliar la aplicación con nuevas características vulnerables en poco tiempo. 
+
+Damn Vulnerable RESTAurant en realidad no está limitado a ningún tipo específico de API, ya que los puntos finales pueden utilizar API REST, GraphQL y otros. Es un restaurante, por lo que se pueden servir varios platos allí a lo largo del tiempo.
 
 ## ⚠️ Warning and Disclaimer!
 
