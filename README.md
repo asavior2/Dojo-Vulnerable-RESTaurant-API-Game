@@ -1,5 +1,5 @@
 
-![Damn Vulnerable RESTaurant Logo](app/static/img/Ciber.png)
+
 
 # 🏆 Dojo Api Sec 🏆: ¡Dominando la seguridad de API! 🚀
 
